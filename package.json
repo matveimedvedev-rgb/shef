@@ -1,0 +1,68 @@
+{
+  "name": "intelligent-home-food-assistant",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "electron:dev": "concurrently \"npm run dev\" \"wait-on http://localhost:5173 && electron .\"",
+    "electron:build": "npm run build && electron-builder",
+    "electron:pack": "npm run build && electron-builder --dir",
+    "electron:dist": "npm run build && electron-builder",
+    "tunnel": "node start-tunnel.js",
+    "tunnel:simple": "ngrok http 5173",
+    "public": "node start-public-tunnel.js",
+    "public:prod": "node start-production-tunnel.js"
+  },
+  "dependencies": {
+    "openai": "^6.9.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.16",
+    "concurrently": "^8.2.2",
+    "electron": "^39.2.4",
+    "electron-builder": "^26.0.12",
+    "localtunnel": "^2.0.2",
+    "ngrok": "^5.0.0-beta.2",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.8",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.intelligentfoodassistant.app",
+    "productName": "Intelligent Home Food Assistant",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "node_modules/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "forceCodeSigning": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}

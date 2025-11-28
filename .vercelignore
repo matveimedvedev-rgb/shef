@@ -1,0 +1,22 @@
+# Electron files (not needed for web deployment)
+electron/
+release/
+dist/electron/
+
+# Development files
+node_modules/
+.vscode/
+.idea/
+
+# Build artifacts (Vercel will build fresh)
+dist/
+*.log
+
+# Environment files (use Vercel environment variables instead)
+.env.local
+.env.*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
